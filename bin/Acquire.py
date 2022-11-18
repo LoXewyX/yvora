@@ -1,4 +1,5 @@
-import shutil, os, json, keyboard
+import os, json, keyboard
+import urllib.request
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
@@ -47,7 +48,10 @@ class Acquire():
                 print(f'{col.WARNING}App {res[1]} is not indexed on my cloud{col.ENDC}')
             
         def extract():
-            shutil.copy2(os.path.join(cloudRoute, 'acquire', '%s.py' % res[1].capitalize()), os.path.join(path, binfolder))
+            
+            with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/acquire/%s.py' % res[1].capitalize()) as url:
+                with open('%s.py' % os.path.join(path, binfolder, res[1].capitalize()), 'w') as f:
+                    f.write(url.read().decode('utf-8'))
             
             w = apps
             w.update({res[1]: remoteApps[res[1]]})
@@ -58,8 +62,9 @@ class Acquire():
         global force, remoteApps, exitHK
         force = False
         exitHK = False
-        cloudRoute = os.path.join(path, '..', 'yvora_cloud')
-        remoteApps = json.load(open(os.path.join(cloudRoute, 'apps.json')))
+        
+        with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/apps.json') as url:
+            remoteApps = json.load(url)
         
         keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
             
