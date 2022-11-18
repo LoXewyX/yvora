@@ -121,7 +121,7 @@ class Console:
                                     if not exitHK:
                                         attempts -= 1
                                         msg()
-                                        print('{col.WARNING}This password is not valid for me {col.ENDC}')
+                                        print(f'{col.WARNING}This password is not valid for me {col.ENDC}')
                         else:
                             msg()
                             print('I think you are acting very suspicious, so  I\'m afraid you can no longer enter the password')
@@ -185,7 +185,18 @@ class Console:
         utils.Fancyprint.data = data
         
         msg()
-        print(f'Welcome to {appname} v{appversion} by LoXewyX!')
+        print(f'Welcome to {appname} v{appversion} by LoXewyX. A Python\'s exclusive terminal')        
+        
+        print('''                                              
+\t /$$   /$$ /$$    /$$ /$$$$$$   /$$$$$$  /$$$$$$ 
+\t| $$  | $$|  $$  /$$//$$__  $$ /$$__  $$|____  $$
+\t| $$  | $$ \  $$/$$/| $$  \ $$| $$  \__/ /$$$$$$$
+\t| $$  | $$  \  $$$/ | $$  | $$| $$      /$$__  $$
+\t|  $$$$$$$   \  $/  |  $$$$$$/| $$     |  $$$$$$$
+\t \____  $$    \_/    \______/ |__/      \_______/
+\t /$$  | $$                                       
+\t|  $$$$$$/                                       
+\t\______/\n''')
 
         while not cliexit:
             refresh()

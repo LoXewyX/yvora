@@ -107,10 +107,30 @@
             "srcfolder"
         ]
     },
+    "read": {
+        "help": "I'll read all your files",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "res",
+            "srcfolder",
+            "dirpath"
+        ]
+    },
     "reload": {
         "help": "I'll reload all your terminal data",
         "creator": "LoXewyX",
         "version": "0.0.1"
+    },
+    "run": {
+        "help": "I'll run you a command from your bash",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "res"
+        ]
     },
     "setname": {
         "help": "Let's introduce us",
@@ -128,11 +148,14 @@
         "version": "0.0.1"
     },
     "supersede": {
-        "help": "I'll move your files for you",
+        "help": "I'll move or rename your files for you",
         "creator": "LoXewyX",
         "version": "0.0.1",
         "args": [
-            "data"
+            "data",
+            "res",
+            "srcfolder",
+            "dirpath"
         ]
     },
     "version": {
@@ -145,12 +168,13 @@
             "res"
         ]
     },
-    "x": {
-        "help": "Test one - Acquire",
-        "creator": "LoXewyX - temp",
+    "xplore": {
+        "help": "I'll open your explorer and search whatever you want",
+        "creator": "LoXewyX",
         "version": "0.0.1",
         "args": [
-            "data"
+            "data",
+            "res"
         ]
     }
 }

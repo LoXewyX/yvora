@@ -7,7 +7,7 @@ class Help():
         
         utils.Fancyprint.data = data
         
-        if len(res):
+        if len(res) == 1:
             pc(1)
             pc(2)
             print('Try typing \'help [program]\' or type \'help (--all or -a)\'')

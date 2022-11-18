@@ -34,7 +34,6 @@ class Ls():
             
             if os.path.exists(relpath) and relpath.startswith(dirpath):
                 try:
-                    print(relpath)
                     dirs = os.listdir(relpath)
                     pdirs(dirs)
                     

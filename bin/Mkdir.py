@@ -47,7 +47,7 @@ class Mkdir():
             keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
             
             pc()
-            d = input('Now, type you folder\'s name: ')
+            d = input('Now, type your folder\'s name: ')
             
             if not exitHK:
                 make(d)

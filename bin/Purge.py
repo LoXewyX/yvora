@@ -88,7 +88,7 @@ class Purge():
         noAsk = False
         
         keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
-                               
+        
         if len(res) >= 3:
             types = {
                 '-f': '--force',
@@ -96,7 +96,6 @@ class Purge():
             }
             
             def compareList(l1, l2):
-                print(l1, l2)
                 try:
                     for i in l1:
                         l2.remove(i)
@@ -112,8 +111,7 @@ class Purge():
                         noAsk = True
                 erase() if noAsk else (erase() if ask() else desist())
             else: invalid(types) 
-                
-                    
+            
         elif len(res) == 2:
             erase() if ask() else desist()
         elif len(res) == 1:
