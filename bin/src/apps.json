@@ -1,0 +1,145 @@
+{
+    "acquire": {
+        "help": "I'll get the app you wish",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "apps",
+            "res",
+            "filepath",
+            "binfolder",
+            "srcfolder"
+        ]
+    },
+    "cd": {
+        "help": "I'll change your directory for you",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "res",
+            "srcfolder",
+            "dirpath"
+        ]
+    },
+    "clear": {
+        "help": "I'll throw out your garbage for you",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": []
+    },
+    "creator": {
+        "help": "I'll tell you who created this",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "apps",
+            "res"
+        ]
+    },
+    "hello": {
+        "help": "A well done job",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data"
+        ]
+    },
+    "help": {
+        "help": "How may I help you?",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "apps",
+            "res"
+        ]
+    },
+    "list": {
+        "help": "I'll fetch all your content",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "apps",
+            "res"
+        ]
+    },
+    "mkdir": {
+        "help": "I'll create you a directory folder",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "res",
+            "srcfolder",
+            "dirpath"
+        ]
+    },
+    "passwd": {
+        "help": "I'll change your password",
+        "creator": "LoXewyX",
+        "version": "0.0.1"
+    },
+    "purge": {
+        "help": "Let me erase all your apps",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "apps",
+            "res",
+            "filepath",
+            "binfolder",
+            "srcfolder"
+        ]
+    },
+    "reload": {
+        "help": "I'll reload all your terminal data",
+        "creator": "LoXewyX",
+        "version": "0.0.1"
+    },
+    "setname": {
+        "help": "Let's introduce us",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "res",
+            "srcfolder"
+        ]
+    },
+    "su": {
+        "help": "I'll change your user",
+        "creator": "LoXewyX",
+        "version": "0.0.1"
+    },
+    "supersede": {
+        "help": "I'll move your files for you",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data"
+        ]
+    },
+    "version": {
+        "help": "I'll show you the app version",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "apps",
+            "res"
+        ]
+    },
+    "x": {
+        "help": "Test one - Acquire",
+        "creator": "LoXewyX - temp",
+        "version": "0.0.1",
+        "args": [
+            "data"
+        ]
+    }
+}
