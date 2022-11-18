@@ -2,7 +2,7 @@
     "acquire": {
         "help": "I'll get the app you wish",
         "creator": "LoXewyX",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "args": [
             "data",
             "apps",
@@ -57,8 +57,19 @@
             "res"
         ]
     },
+    "ls": {
+        "help": "I'll list all your directory's content",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "res",
+            "srcfolder",
+            "dirpath"
+        ]
+    },
     "list": {
-        "help": "I'll fetch all your content",
+        "help": "I'll fetch all your apps content",
         "creator": "LoXewyX",
         "version": "0.0.1",
         "args": [

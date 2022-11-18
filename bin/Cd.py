@@ -41,4 +41,4 @@ class Cd():
             
         else:
             pc()
-            print(f'{col.WARNING}Mkdir must contain 2 arguments{col.ENDC}')
+            print(f'{col.WARNING}cd must contain 1 argument{col.ENDC}')

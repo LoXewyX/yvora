@@ -12,6 +12,7 @@ class List():
                 if len(apps) > 1:
                     for x in list(apps.keys())[:-1]: print('├─ %s' % x)
                 print('└─ %s' % list(apps.keys())[-1])
+                
             else:
                 if type == 2:
                     c = 0
@@ -63,7 +64,6 @@ class List():
         if len(res) == 1:
             pc(4)
             printList(0)
-            
             
         elif len(res) == 2:
             pc(4)
