@@ -91,7 +91,7 @@ class List():
                         break
                     else:
                         import json
-                        print('Invalid arguments! Valids:')
+                        print(f'{col.WARNING}Invalid arguments!{col.ENDC} Valids:')
                         print(json.dumps(types, indent = 4))
                         
                 index += 1

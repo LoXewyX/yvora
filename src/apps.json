@@ -123,6 +123,17 @@
         "creator": "LoXewyX",
         "version": "0.0.1"
     },
+    "rm": {
+        "help": "I'll remove all your data from your directory",
+        "creator": "LoXewyX",
+        "version": "0.0.1",
+        "args": [
+            "data",
+            "res",
+            "srcfolder",
+            "dirpath"
+        ]
+    },
     "run": {
         "help": "I'll run you a command from your bash",
         "creator": "LoXewyX",

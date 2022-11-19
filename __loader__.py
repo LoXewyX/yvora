@@ -2,6 +2,7 @@
 # print('\'pip\' was upgraded')
 
 import pkg_resources as pkg
+import importlib
 data = pkg.working_set
 
 def printPkgs():
@@ -19,12 +20,13 @@ if not isPkgInstalled('keyboard'):
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'keyboard', '-q'])
     print('\'pynput\' was installed')
     
-import console
+import interface as iface
 def load():
-    console.Console()
+    iface.Interface()
     
-    while console.restart:
-        console.restart = False
+    while iface.restart:
+        iface.restart = False
+        importlib.reload(iface)
         load()
         
 load()

@@ -10,7 +10,7 @@ class Run():
         
         pc(4)
         pc(5)
-        print(f'{col.WARNING}Warning!{col.ENDC}')
+        print(f'{col.WARNING}Disclaimer{col.ENDC}')
         pc(6)
-        print('All your commands are provided from your operative system')
+        print('All commands are provided from your OS')
         os.system(' '.join(res[1:]))

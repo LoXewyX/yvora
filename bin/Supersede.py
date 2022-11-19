@@ -58,4 +58,4 @@ class Supersede():
             
         else:
             pc()
-            print(f'{col.WARNING}Supersede must contain 2 or none arguments{col.ENDC}')
+            print(f'{col.WARNING}supersede must contain 2 or none arguments{col.ENDC}')
