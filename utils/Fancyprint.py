@@ -33,12 +33,12 @@ def Fancyprint(style=0):
     elif style == 7:
         print('│')
         
-def graffiti(version):      
+def graffiti():      
         
     print(
         '   __ __ _____ _____ _____ _____\n' +
         '  |  |  |  |  |     | __  |  _  |\n' +
         '  |_   _|  |  |  |  |    -|     |\n' +
         '    |_|  \___/|_____|__|__|__|__|\n\n' +
-        '  v%s' % version
+        '  v%s' % data['version']
     )

@@ -1,7 +1,9 @@
 {
-    "hostname": "LoXewyX",
-    "user": "lox",
-    "password": "4856345117e74c707f770fe22da6e3e80c0f60c3c63abf2be797e9ce2e98c3c2eea8fd466627e6e87992811f537623e9aa0b4f703f458c9c0edf45965ec64ed9",
+    "appname": "yvora",
+    "hostname": "",
+    "user": "user",
+    "version": "0.0.3 - [BETA]",
+    "password": "b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86",
     "pc": "yvora",
     "dirpath": "/"
 }

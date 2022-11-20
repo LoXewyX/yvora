@@ -33,7 +33,6 @@ class Setname():
         
         if len(res) == 3:
             res[2] = noEmoji(res[2])
-            print(res[1])
             if res[1] == 'pc' or res[1] == 'user':
                 import os, json
                 route = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', srcfolder, "metadata.json")

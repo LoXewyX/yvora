@@ -45,7 +45,7 @@ class Interface():
             # load modules
             
 
-        def response(res):
+        def response(res_r):
             
             # Not indexed:
             # exit
@@ -53,119 +53,122 @@ class Interface():
             # reload
             # su
             
-            if len(res) != 0:
-                global data, cliexit, apps, root
-                appName = res[0].capitalize()
-                
-                if res[0] == 'exit':
-                    if not root:
-                        msg()
-                        print(f'{col.CYAN}Goodbye{col.ENDC} 👋')
-                        cliexit = True
-                    else: root = False
+            for res_idx in range(len(res_r)):
+                res = res_r[res_idx].split()
+            
+                if len(res) != 0:
+                    global data, cliexit, apps, root
+                    appCap = res[0].capitalize()
                     
-                elif res[0] == 'reload':
-                    global restart
-                    restart = cliexit = True
-                    
-                elif res[0] == 'su' or res[0] == 'passwd':
-                    global attempts, exitHK
-                    exitHK = False
-                    import hashlib
-                    
-                    # Main loop
-                    while not exitHK:
-                        if attempts > 0:
-                            if not exitHK:
-                                def quitKH():
-                                    global exitHK, pwdThread
-                                    exitHK = True
-                                    try:
-                                        keyboard.unregister_hotkey('ctrl+shift+q')
-                                        keyboard.press('enter')
-                                    except Exception: pass
-                                keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
-                                
-                                def pwd():
-                                    global data
-                                    msg()
-                                    msgpw = 'Secret password [%i / %i attempts]: ' % (
-                                        attempts, MAXATTEMPTS
-                                    )
-                                    i = getpass.getpass(msgpw)
-                                    return hashlib.sha512(i.encode()).hexdigest() == data['password']
-                                
-                                if root or pwd():
-                                    if res[0] == 'su':
-                                        if root:
-                                            msg()
-                                            print(f'{col.WARNING}You\'re already a root user{col.ENDC}')
-                                        else: root = True
-                                        attempts = MAXATTEMPTS
+                    if res[0] == 'exit':
+                        if not root:
+                            msg()
+                            print(f'{col.CYAN}Goodbye{col.ENDC} 👋')
+                            cliexit = True
+                        else: root = False
+                        
+                    elif res[0] == 'reload':
+                        global restart
+                        restart = cliexit = True
+                        
+                    elif res[0] == 'su' or res[0] == 'passwd':
+                        global attempts, exitHK
+                        exitHK = False
+                        import hashlib
+                        
+                        # Main loop
+                        while not exitHK:
+                            if attempts > 0:
+                                if not exitHK:
+                                    def quitKH():
+                                        global exitHK, pwdThread
                                         exitHK = True
-                                    elif res[0] == 'passwd':
-                                        if not exitHK:
-                                            msg()
-                                            newpwd = getpass.getpass('Type me a new password: ')
-                                        if not exitHK:
-                                            msg()
-                                            newpwdconf = getpass.getpass('Confirm it please: ')
-                                        while not exitHK and newpwd != newpwdconf:
-                                            msg()
-                                            newpwd = getpass.getpass('Retype it please: ')
+                                        try:
+                                            keyboard.unregister_hotkey('ctrl+shift+q')
+                                            keyboard.press('enter')
+                                        except Exception: pass
+                                    keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
+                                    
+                                    def pwd():
+                                        global data
+                                        msg()
+                                        msgpw = 'Secret password [%i / %i attempts]: ' % (
+                                            attempts, MAXATTEMPTS
+                                        )
+                                        i = getpass.getpass(msgpw)
+                                        return hashlib.sha512(i.encode()).hexdigest() == data['password']
+                                    
+                                    if root or pwd():
+                                        if res[0] == 'su':
+                                            if root:
+                                                msg()
+                                                print(f'{col.WARNING}You\'re already a root user{col.ENDC}')
+                                            else: root = True
+                                            attempts = MAXATTEMPTS
+                                            exitHK = True
+                                        elif res[0] == 'passwd':
+                                            if not exitHK:
+                                                msg()
+                                                newpwd = getpass.getpass('Type me a new password: ')
                                             if not exitHK:
                                                 msg()
                                                 newpwdconf = getpass.getpass('Confirm it please: ')
-                                        if not exitHK and newpwd == newpwdconf:
-                                            with open(os.path.join(filepath, srcfolder, 'metadata.json')) as f:
-                                                data = json.load(f)
-                                            data['password'] = hashlib.sha512(newpwd.encode()).hexdigest()
-                                            with open(os.path.join(filepath, srcfolder, 'metadata.json'), 'w') as f:
-                                                json.dump(data, f, indent=4)
-                                            exitHK = True
-                                else:
-                                    if not exitHK:
-                                        attempts -= 1
-                                        msg()
-                                        print(f'{col.WARNING}This password is not valid for me {col.ENDC}')
-                        else:
-                            msg()
-                            print('I think you are acting very suspicious, so  I\'m afraid you can no longer enter the password')
-                            exitHK = True
-                # Extra args
-                elif res[0] in apps:  
-                    try:
-                        run = getattr(importlib.import_module('%s.%s' % (binfolder, appName)), appName)
+                                            while not exitHK and newpwd != newpwdconf:
+                                                msg()
+                                                newpwd = getpass.getpass('Retype it please: ')
+                                                if not exitHK:
+                                                    msg()
+                                                    newpwdconf = getpass.getpass('Confirm it please: ')
+                                            if not exitHK and newpwd == newpwdconf:
+                                                with open(os.path.join(filepath, srcfolder, 'metadata.json')) as f:
+                                                    data = json.load(f)
+                                                data['password'] = hashlib.sha512(newpwd.encode()).hexdigest()
+                                                with open(os.path.join(filepath, srcfolder, 'metadata.json'), 'w') as f:
+                                                    json.dump(data, f, indent=4)
+                                                exitHK = True
+                                    else:
+                                        if not exitHK:
+                                            attempts -= 1
+                                            msg()
+                                            print(f'{col.WARNING}This password is not valid for me {col.ENDC}')
+                            else:
+                                msg()
+                                print('I think you are acting very suspicious, so  I\'m afraid you can no longer enter the password')
+                                exitHK = True
+                    # Extra args
+                    elif res[0] in apps:  
                         try:
-                            args = []
-                            for x in apps[res[0]]['args']:
-                                args.append(eval('%s' % x))
-                            run(*args)
+                            run = getattr(importlib.import_module('%s.%s' % (binfolder, appCap)), appCap)
+                            try:
+                                args = []
+                                for x in apps[res[0]]['args']:
+                                    args.append(eval('%s' % x))
+                                run(*args)
+                            except Exception as ex:
+                                importlib.reload(run)
+                                msg(1)
+                                msg(2)
+                                print(f'{col.WARNING}Internal error!{col.ENDC}')
+                                msg(3)
+                                print(f'{col.WARNING}May the files be corrupted{col.ENDC}')
+                                msg()
+                                print(f'{col.RED}{ex}{col.ENDC}')
+                            
                         except Exception as ex:
-                            importlib.reload(run)
                             msg(1)
                             msg(2)
-                            print(f'{col.WARNING}Internal error!{col.ENDC}')
+                            print('{0}Command {1}{2}{0} is not working properly!{1}'.format(col.WARNING, col.ENDC, res[0]))
                             msg(3)
-                            print(f'{col.WARNING}May the files be corrupted{col.ENDC}')
+                            print(f'{col.WARNING}Please contact with the creator or try to reinstall it{col.ENDC}')
                             msg()
                             print(f'{col.RED}{ex}{col.ENDC}')
                         
-                    except Exception as ex:
+                    else:
                         msg(1)
                         msg(2)
-                        print('{0}Command {1}{2}{0} is not working properly!{1}'.format(col.WARNING, col.ENDC, res[0]))
+                        print('{0}Command {1}{2}{0} is not indexed on my database{1}'.format(col.WARNING, col.ENDC, res[0]))
                         msg(3)
-                        print(f'{col.WARNING}Please contact with the creator or try to reinstall it{col.ENDC}')
-                        msg()
-                        print(f'{col.RED}{ex}{col.ENDC}')
-                    
-                else:
-                    msg(1)
-                    msg(2)
-                    print('{0}Command {1}{2}{0} is not indexed on my database{1}'.format(col.WARNING, col.ENDC, res[0]))
-                    msg(3)
-                    print(f'{col.WARNING}Type {col.ENDC}list{col.WARNING} if you are lost{col.ENDC}')
+                        print(f'{col.WARNING}Type {col.ENDC}list{col.WARNING} if you are lost{col.ENDC}')
 
         # Pool
         
@@ -184,8 +187,7 @@ class Interface():
         
         dirpath    = os.path.join(filepath, 'root')
 
-        appname     = 'yvora'
-        appversion  = '0.0.2 [ Alpha ]'
+        appname     = data['appname']
 
         # Main loop
         
@@ -197,7 +199,7 @@ class Interface():
         msg(3)
         print(f'A Python\'s exclusive terminal by LoXewyX{col.GREEN}')
         
-        graffiti(appversion)
+        graffiti()
         print(col.ENDC)
 
         while not cliexit:
@@ -212,4 +214,5 @@ class Interface():
                 ),
                 end=''
             )
-            response(input().split())
+            
+            response(input().split('&&'))
