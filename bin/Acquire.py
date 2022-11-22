@@ -27,11 +27,11 @@ class Acquire():
                 keyboard.press('enter')
             except Exception: pass
         
-        def give():
-            global force
+        def give(f=False):
             if res[1] in remoteApps:
-                if not res[1] in apps or force:
-                    extract()
+                if f or not res[1] in apps:
+                    write()
+                    print('Done!')
                 else:
                     global exitHK
                     if not exitHK:
@@ -41,14 +41,13 @@ class Acquire():
                         pc(3)
                         i = input('Do you wish to reinstall it [Y/n]? ')
                         if not exitHK and (i == '' or i == 'n' or i == 'y'):
-                            extract() if i == 'y' or i == '' else desist()
+                            write() if i == 'y' or i == '' else desist()
                                 
             elif not exitHK:
                 pc()
                 print(f'{col.WARNING}App {res[1]} is not indexed on my cloud{col.ENDC}')
             
-        def extract():
-            
+        def write():
             with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/acquire/%s.py' % res[1].capitalize()) as url:
                 with open('%s.py' % os.path.join(path, binfolder, res[1].capitalize()), 'w') as f:
                     f.write(url.read().decode('utf-8').replace('\n', ''))
@@ -59,32 +58,38 @@ class Acquire():
             with open(os.path.join(path, srcfolder, 'apps.json'), 'w') as f:
                 json.dump(w, f, indent=4)
         
-        global force, remoteApps, exitHK
-        force = False
+        global remoteApps, exitHK
         exitHK = False
         
         with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/apps.json') as url:
             remoteApps = json.load(url)
         
         keyboard.add_hotkey('ctrl+x', lambda: quitKH())
-            
-        if len(res) == 3:
+        
+        if len(res) > 2:
             types = {
                 '-f': '--force',
                 '-y': '--yes'
             }
+            
+            f = False
+            y = False
+            
             for x in res[2:]:
                 if x == list(types.keys())[0] or x == types[list(types.keys())[0]]:
-                    force = True
-                    ask()
+                    f = True
                 elif x == list(types.keys())[1] or x == types[list(types.keys())[1]]:
-                    give()
+                    y = True
                 else:
                     pc()
                     print(f'{col.WARNING}Invalid argument! Types:{col.ENDC}')
                     break
+                
+            give(f) if y or ask() else desist()
+        
         elif len(res) == 2:
             give() if ask() else desist()
+            
         elif len(res) == 1:
             pc()
             res.append(input('Introduce your package you wish to install: '))
