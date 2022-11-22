@@ -37,7 +37,6 @@ class New():
             
             pc()
             print(proj.capitalize() + ' was created')
-
         
         if len(res) == 1:
             global exitHK
