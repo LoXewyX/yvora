@@ -8,7 +8,7 @@ It behaves more or less like a terminal\
 With the *and* symbol you can do multiple commands (despite errors)
 
 ## How to run the code
-Use your system bash and run the file: __\_\_loader\_\_.py__
+Use your system bash and run the file: __setup.py__
 
 ## How to import a new project
 It's stucture it's quite simple:
