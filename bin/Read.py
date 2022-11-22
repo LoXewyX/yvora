@@ -2,28 +2,24 @@ import os, json
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
+from utils.RelpathSolver import get_userpath
 
 class Read():
-    def __init__(self, data, res, srcfolder, dirpath):
+    def __init__(self, data, res, dirpath, root):
         
         utils.Fancyprint.data = data
-        
-        route = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)
-            ), '..', srcfolder, "metadata.json")
-        
-        with open(route) as f:
-            data = json.load(f)
             
         def read(n=None, m=None, o=False):
-            osfolders = res[1][1:] if res[1].startswith('/') or res[1].startswith('\\') else res[1]
+            
+            junction = res[1][1:] if res[1].startswith('/') or res[1].startswith('\\') else res[1]
+            userpath = get_userpath(dirpath, data, root)
             
             if res[1].startswith('/') or res[1].startswith('\\'):
-                relpath = os.path.abspath(os.path.join(dirpath, osfolders))
+                relpath = os.path.abspath(os.path.join(userpath, junction))
             else:
-                relpath = os.path.abspath(os.path.join(dirpath, data['dirpath'][1:], osfolders))
+                relpath = os.path.abspath(os.path.join(userpath, data['rootpath' if root else 'dirpath'][1:], junction))
             
-            if os.path.exists(relpath) and relpath.startswith(dirpath):
+            if os.path.exists(relpath) and relpath.startswith(userpath):
                 try:
                     pc()
                     print('%s%s - %i lines%s' % (col.CYAN, relpath.split(os.sep)[-1], len(open(relpath, 'r').readlines()), col.ENDC))
@@ -45,7 +41,10 @@ class Read():
             print(json.dumps(types, indent = 4))
             print('--min or --max requires an extra number argument')
         
-        if len(res) == 2:
+        if len(res) == 1:
+            print(f'{col.WARNING}read must contain at least 1 argument{col.ENDC}')
+            
+        elif len(res) == 2:
             read()
             
         else:

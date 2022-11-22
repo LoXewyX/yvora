@@ -2,27 +2,21 @@ import os, json
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
+from utils.RelpathSolver import get_userpath
 
 class Rm():
-    def __init__(self, data, res, srcfolder, dirpath):
+    def __init__(self, data, res, dirpath, root):
         
         utils.Fancyprint.data = data
             
         def rm(d, rec=False):
+                
+            userpath = get_userpath(dirpath, data, root)
+            relpath = os.path.abspath(os.path.join(userpath, data['rootpath' if root else 'dirpath'][1:], d))
             
-            route = os.path.join(
-                os.path.dirname(os.path.abspath(__file__)
-                ), '..', srcfolder, "metadata.json")
-            
-            with open(route) as f:
-                data = json.load(f)
-            
-            relpath = os.path.abspath(os.path.join(dirpath, data['dirpath'][1:], d))
-            
-            if relpath.startswith(dirpath) and os.path.exists(relpath):
+            if relpath.startswith(userpath) and os.path.exists(relpath):
                 if os.path.isfile(relpath):
                     os.remove(relpath)
-                    pc()
                 else:
                     if rec:
                         import shutil
@@ -53,11 +47,11 @@ class Rm():
                 global exitHK
                 exitHK = True
                 try:
-                    keyboard.unregister_hotkey('ctrl+shift+q')
+                    keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
                 except Exception: pass
                 
-            keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
+            keyboard.add_hotkey('ctrl+x', lambda: quitKH())
             
             pc()
             d = input('Type your directory / file you want to remove: ')

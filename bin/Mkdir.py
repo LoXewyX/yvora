@@ -2,28 +2,24 @@ import os, json
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
+from utils.RelpathSolver import get_route, get_userpath
 
 class Mkdir():
-    def __init__(self, data, res, srcfolder, dirpath):
+    def __init__(self, data, res, dirpath, root):
         
         utils.Fancyprint.data = data
             
         def make(d):
             
-            route = os.path.join(
-                os.path.dirname(os.path.abspath(__file__)
-                ), '..', srcfolder, "metadata.json")
+            userpath = get_userpath(dirpath, data, root)
+            relpath = os.path.abspath(os.path.join(userpath, data['rootpath' if root else 'dirpath'][1:], d))
             
-            with open(route) as f:
-                data = json.load(f)
-            
-            fJunction = os.path.abspath(os.path.join(dirpath, data['dirpath'][1:], d))
-            if fJunction.startswith(dirpath):
-                if os.path.exists(fJunction):
+            if relpath.startswith(userpath):
+                if os.path.exists(relpath):
                     pc()
                     print(f'{col.WARNING}Directory exists{col.ENDC}')
                 else:
-                    os.makedirs(fJunction, exist_ok=True)
+                    os.makedirs(relpath, exist_ok=True)
                     pc()
                     print('Directory created')
             else:
@@ -40,11 +36,11 @@ class Mkdir():
                 global exitHK
                 exitHK = True
                 try:
-                    keyboard.unregister_hotkey('ctrl+shift+q')
+                    keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
                 except Exception: pass
                 
-            keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
+            keyboard.add_hotkey('ctrl+x', lambda: quitKH())
             
             pc()
             d = input('Now, type your folder\'s name: ')
@@ -57,4 +53,4 @@ class Mkdir():
             
         else:
             pc()
-            print(f'{col.WARNING}Mkdir must contain 1 or none arguments{col.ENDC}')
+            print(f'{col.WARNING}mkdir must contain 1 or none arguments{col.ENDC}')

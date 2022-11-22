@@ -3,7 +3,7 @@ from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
 
 class Setname():
-    def __init__(self, data, res, srcfolder):
+    def __init__(self, data, res, srcfolder, dirpath):
         
         utils.Fancyprint.data = data
         
@@ -41,9 +41,16 @@ class Setname():
                     
                 if res[1] == 'pc':
                     data['pc'] = res[2]
+                    utils.Fancyprint.data = data
                     pc()
                     print('My name was changed to \'%s\'' % res[2])
                 else:
+                    folName = os.path.join(dirpath)
+                    if os.path.exists(os.path.join(folName, data['user'])):
+                        os.rename(os.path.join(folName, data['user']), os.path.join(folName, res[2]))
+                    else:
+                        os.mkdir(os.path.join(folName, res[2]))
+                    
                     data['user'] = res[2]
                     pc()
                     print('Your name was changed to \'%s\'' % res[2])

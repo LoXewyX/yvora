@@ -10,8 +10,9 @@ from utils.Fancyprint import Fancyprint as msg
 from utils.Fancyprint import graffiti as graffiti
 import utils.Fancyprint
 
-global restart
+global restart, root
 restart = False
+root = False
 
 class Interface():
     def __init__(self):
@@ -19,7 +20,7 @@ class Interface():
         # Libraries
         def getJSON(name):
             global srcfolder
-            return open( 
+            return open(
                 os.path.join(
                     filepath,
                     srcfolder,
@@ -39,7 +40,7 @@ class Interface():
             
             # unbinds
             try:
-                keyboard.unregister_hotkey('ctrl+shift+q')
+                keyboard.unregister_hotkey('ctrl+x')
             except Exception: pass
             
             # load modules
@@ -68,8 +69,12 @@ class Interface():
                         else: root = False
                         
                     elif res[0] == 'reload':
-                        global restart
-                        restart = cliexit = True
+                        if root:
+                            global restart
+                            restart = cliexit = True
+                        else:
+                            msg()
+                            print(f'{col.WARNING}You are not a root user{col.ENDC}')
                         
                     elif res[0] == 'su' or res[0] == 'passwd':
                         global attempts, exitHK
@@ -84,13 +89,14 @@ class Interface():
                                         global exitHK, pwdThread
                                         exitHK = True
                                         try:
-                                            keyboard.unregister_hotkey('ctrl+shift+q')
+                                            keyboard.unregister_hotkey('ctrl+x')
                                             keyboard.press('enter')
                                         except Exception: pass
-                                    keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
+                                    keyboard.add_hotkey('ctrl+x', lambda: quitKH())
                                     
                                     def pwd():
                                         global data
+                                        if data['password'] == False: return True
                                         msg()
                                         msgpw = 'Secret password [%i / %i attempts]: ' % (
                                             attempts, MAXATTEMPTS
@@ -122,7 +128,7 @@ class Interface():
                                             if not exitHK and newpwd == newpwdconf:
                                                 with open(os.path.join(filepath, srcfolder, 'metadata.json')) as f:
                                                     data = json.load(f)
-                                                data['password'] = hashlib.sha512(newpwd.encode()).hexdigest()
+                                                data['password'] = False if newpwd == '' else hashlib.sha512(newpwd.encode()).hexdigest()
                                                 with open(os.path.join(filepath, srcfolder, 'metadata.json'), 'w') as f:
                                                     json.dump(data, f, indent=4)
                                                 exitHK = True
@@ -139,20 +145,10 @@ class Interface():
                     elif res[0] in apps:  
                         try:
                             run = getattr(importlib.import_module('%s.%s' % (binfolder, appCap)), appCap)
-                            try:
-                                args = []
-                                for x in apps[res[0]]['args']:
-                                    args.append(eval('%s' % x))
-                                run(*args)
-                            except Exception as ex:
-                                importlib.reload(run)
-                                msg(1)
-                                msg(2)
-                                print(f'{col.WARNING}Internal error!{col.ENDC}')
-                                msg(3)
-                                print(f'{col.WARNING}May the files be corrupted{col.ENDC}')
-                                msg()
-                                print(f'{col.RED}{ex}{col.ENDC}')
+                            args = []
+                            for x in apps[res[0]]['args']:
+                                args.append(eval('%s' % x))
+                            run(*args)
                             
                         except Exception as ex:
                             msg(1)
@@ -175,7 +171,6 @@ class Interface():
         global attempts, root, data, cliexit, srcfolder, apps, dirpath
         
         cliexit     = False
-        root        = False
         MAXATTEMPTS = 5
         attempts    = MAXATTEMPTS
         binfolder   = 'bin'
@@ -210,7 +205,7 @@ class Interface():
                     f'{col.RED}root{col.ENDC}' if root else data['user'],
                     data['hostname'],
                     f'{col.RED}#{col.ENDC}' if root else f'{col.GREEN}${col.ENDC}',
-                    '{0}{1}{2}'.format(col.GRAY, data['dirpath'], col.ENDC)
+                    '{0}{1}{2}'.format(col.GRAY, data['rootpath'] if root else data['dirpath'], col.ENDC)
                 ),
                 end=''
             )

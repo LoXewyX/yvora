@@ -12,7 +12,7 @@ class Help():
             pc(2)
             print('Try typing \'help [program]\' or type \'help (--all or -a)\'')
             pc(3)
-            print(f'{col.CYAN}REMEMBER!{col.ENDC} [ctrl + shift + q] to escape on input functions')
+            print(f'{col.CYAN}REMEMBER!{col.ENDC} [ctrl + x] to escape on input functions')
         elif res[1] == '--all' or res[1] == '-a':
             pc(1)
             if len(apps) > 1:

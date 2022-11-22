@@ -1,26 +1,22 @@
-import os, json
+import os
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
+from utils.RelpathSolver import get_userpath
 
 class Supersede():
-    def __init__(self, data, res, srcfolder, dirpath):
+    def __init__(self, data, res, dirpath, root):
         
         utils.Fancyprint.data = data
             
         def make(d, r):
+            userpath = get_userpath(dirpath, data, root)
+            relpath = os.path.join(userpath, data['rootpath' if root else 'dirpath'][1:])
             
-            route = os.path.join(
-                os.path.dirname(os.path.abspath(__file__)
-                ), '..', srcfolder, "metadata.json")
+            fenter = os.path.abspath(os.path.join(relpath, d))
+            fexit = os.path.abspath(os.path.join(relpath, r))
             
-            with open(route) as f:
-                data = json.load(f)
-            
-            fenter = os.path.abspath(os.path.join(dirpath, data['dirpath'][1:], d))
-            fexit = os.path.abspath(os.path.join(dirpath, data['dirpath'][1:], r))
-            
-            if fenter.startswith(dirpath) and fexit.startswith(dirpath):
+            if fenter.startswith(userpath) and fexit.startswith(userpath):
                 os.rename(fenter, fexit)
                 pc()
                 print('%s was superseded to %s' % (fenter.split(os.sep)[-1], fexit.split(os.sep)[-1]))
@@ -38,17 +34,18 @@ class Supersede():
                 global exitHK
                 exitHK = True
                 try:
-                    keyboard.unregister_hotkey('ctrl+shift+q')
+                    keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
                 except Exception: pass
                 
-            keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
+            keyboard.add_hotkey('ctrl+x', lambda: quitKH())
             
             pc()
-            d = input('Type your entrance: ')
+            d = input('Type your file you wish to supersede: ')
             
             if not exitHK:
-                r = input('Now, type your exit: ')
+                pc()
+                r = input('To: ')
             
             if not exitHK:
                 make(d, r)

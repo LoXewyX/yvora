@@ -23,7 +23,7 @@ class Acquire():
             global exitHK
             exitHK = True
             try:
-                keyboard.unregister_hotkey('ctrl+shift+q')
+                keyboard.unregister_hotkey('ctrl+x')
                 keyboard.press('enter')
             except Exception: pass
         
@@ -66,7 +66,7 @@ class Acquire():
         with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/apps.json') as url:
             remoteApps = json.load(url)
         
-        keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
+        keyboard.add_hotkey('ctrl+x', lambda: quitKH())
             
         if len(res) == 3:
             types = {

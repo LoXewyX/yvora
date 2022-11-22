@@ -25,8 +25,9 @@ def load():
     iface.Interface()
     
     while iface.restart:
-        iface.restart = False
+        rootPrivs = iface.root
         importlib.reload(iface)
+        iface.root = rootPrivs
         load()
         
 load()

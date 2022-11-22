@@ -22,11 +22,11 @@ class Xplore():
                 global exitHK
                 exitHK = True
                 try:
-                    keyboard.unregister_hotkey('ctrl+shift+q')
+                    keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
                 except Exception: pass
                 
-            keyboard.add_hotkey('ctrl+shift+q', lambda: quitKH())
+            keyboard.add_hotkey('ctrl+x', lambda: quitKH())
             
             pc()
             d = input('Now, type your URL: ')
