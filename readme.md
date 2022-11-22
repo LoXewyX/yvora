@@ -11,7 +11,7 @@ With the *and* symbol you can do multiple commands (despite errors)
 Use your system bash and run the file: __setup.py__
 
 ## How to import a new project
-It's stucture it's quite simple:
+The stucture it's quite simple:
 
 >:file_folder: bin
 file_folder: root\
