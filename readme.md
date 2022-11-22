@@ -17,8 +17,8 @@ It's stucture it's quite simple:
 file_folder: root\
 :file_folder: src\
 :file_folder: utils\
-:heavy_dollar_sign: __setup.py__\
 :memo: interface.py
+:heavy_dollar_sign: __setup.py__\
 
 ### Adding new content
 Open bin :file_folder:\
