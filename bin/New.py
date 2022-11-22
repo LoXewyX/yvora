@@ -15,7 +15,7 @@ class New():
             with open(route) as f:
                 appdata = json.load(f)
             
-            appdata.update({proj: {
+            appdata.update({proj.lower(): {
                 'help': guide,
                 'creator': creator,
                 'version': version,
