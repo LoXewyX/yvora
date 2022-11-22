@@ -1,4 +1,4 @@
-# YVORA DOCUMENTATION
+# Yvora documentation
 
 Yvora is a full made terminal built in Python.\
 So you basically need to have it installed before testing it.
