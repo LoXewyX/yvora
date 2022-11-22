@@ -13,12 +13,12 @@ Use your system bash and run the file: __setup.py__
 ## How to import a new project
 The stucture it's quite simple:
 
->:file_folder: bin\
-:file_folder: root\
-:file_folder: src\
-:file_folder: utils\
-:memo: interface.py\
-:heavy_dollar_sign: __setup.py__
+>:file_folder: bin    - Python Projects\
+:file_folder: root - File Directories\
+:file_folder: src - Local Storage\
+:file_folder: utils - Python Hooks\
+:memo: interface.py - Main Output\
+:heavy_dollar_sign: __setup.py__ - Executable and  project reloader
 
 ### Adding new content automatically
 
@@ -27,10 +27,11 @@ The stucture it's quite simple:
 - It will create a new project on ./bin/__Project.py__
 - Now try it by executing __project__
 
+### Adding new content manually
+
 >__Warning__
 Follow the project structure or it may not work properly
 
-### Adding new content manually
 - Open ./bin
 - Now create your Python file and name it with capitals
 
