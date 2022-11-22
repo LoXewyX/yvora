@@ -14,7 +14,7 @@ class Version:
                 print('%s → %s' % (res[1], name if name != '' else 'unknown'))
             else:
                 pc()
-                print('I couldn\'t find program \'%s\'' % res[1])
+                print(f'{col.WARNING}I couldn\'t find program \'%s\'{col.ENDC}' % res[1])
         else:
             pc()
-            print('Version requires only 1 argument')
+            print(f'{col.WARNING}Version requires only 1 argument{col.ENDC}')

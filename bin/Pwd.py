@@ -1,5 +1,4 @@
 import os, json
-from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
 

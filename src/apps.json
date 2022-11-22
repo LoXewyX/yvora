@@ -1,8 +1,5 @@
 {
     "acquire": {
-        "help": "I'll get the app you wish",
-        "creator": "LoXewyX",
-        "version": "0.0.2",
         "args": [
             "data",
             "apps",
@@ -10,95 +7,118 @@
             "filepath",
             "binfolder",
             "srcfolder"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll get the app you wish",
+        "version": "0.0.1"
     },
     "cd": {
-        "help": "I'll change your directory for you",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "res",
             "srcfolder",
             "dirpath",
             "root"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll change your directory for you",
+        "version": "0.0.1"
     },
     "clear": {
-        "help": "I'll throw out your garbage for you",
+        "args": [],
         "creator": "LoXewyX",
-        "version": "0.0.1",
-        "args": []
+        "help": "I'll throw out your garbage for you",
+        "version": "0.0.1"
     },
     "creator": {
-        "help": "I'll tell you who created this",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "apps",
             "res"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll tell you who created this",
+        "version": "0.0.1"
     },
     "hello": {
-        "help": "A well done job",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "A well done job",
+        "version": "0.0.1"
     },
     "help": {
-        "help": "How may I help you?",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "apps",
             "res"
-        ]
-    },
-    "ls": {
-        "help": "I'll list all your directory's content",
+        ],
         "creator": "LoXewyX",
-        "version": "0.0.1",
-        "args": [
-            "data",
-            "res",
-            "dirpath",
-            "root"
-        ]
+        "help": "How may I help you?",
+        "version": "0.0.1"
     },
     "list": {
-        "help": "I'll fetch all your apps content",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "apps",
             "res"
-        ]
-    },
-    "mkdir": {
-        "help": "I'll create you a directory folder",
+        ],
         "creator": "LoXewyX",
-        "version": "0.0.1",
+        "help": "I'll fetch all your apps content",
+        "version": "0.0.1"
+    },
+    "ls": {
         "args": [
             "data",
             "res",
             "dirpath",
             "root"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll list all your directory's content",
+        "version": "0.0.1"
+    },
+    "mk": {
+        "args": [
+            "data",
+            "res",
+            "dirpath",
+            "root"
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll create you a file",
+        "version": "0.0.1"
+    },
+    "mkdir": {
+        "args": [
+            "data",
+            "res",
+            "dirpath",
+            "root"
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll create you a directory folder",
+        "version": "0.0.1"
+    },
+    "new": {
+        "args": [
+            "data",
+            "res",
+            "srcfolder",
+            "binfolder",
+            "dirpath"
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll index your project for you",
+        "version": "0.0.1"
     },
     "passwd": {
-        "help": "I'll change your password",
         "creator": "LoXewyX",
+        "help": "I'll change your password",
         "version": "0.0.1"
     },
     "purge": {
-        "help": "Let me erase all your apps",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "apps",
@@ -106,98 +126,101 @@
             "filepath",
             "binfolder",
             "srcfolder"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "Let me erase all your apps",
+        "version": "0.0.1"
     },
     "pwd": {
-        "help": "I'll tell you where are you",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "srcfolder",
             "root"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll tell you where are you",
+        "version": "0.0.1"
     },
     "read": {
-        "help": "I'll read all your files",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "res",
             "dirpath",
             "root"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll read all your files",
+        "version": "0.0.1"
     },
     "reload": {
-        "help": "I'll reload all your terminal data",
         "creator": "LoXewyX",
+        "help": "I'll reload all your terminal data",
         "version": "0.0.1"
     },
     "rm": {
-        "help": "I'll remove all your data from your directory",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "res",
             "dirpath",
             "root"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll remove all your data from your directory",
+        "version": "0.0.1"
     },
     "run": {
-        "help": "I'll run you a command from your bash",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "res"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll run you a command from your bash",
+        "version": "0.0.1"
     },
     "setname": {
-        "help": "Let's introduce us",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "res",
             "srcfolder",
             "dirpath"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "Let's introduce us",
+        "version": "0.0.1"
     },
     "su": {
-        "help": "I'll change your user",
         "creator": "LoXewyX",
+        "help": "I'll change your user",
         "version": "0.0.1"
     },
     "supersede": {
-        "help": "I'll move or rename your files for you",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "res",
             "dirpath",
             "root"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll move or rename your files for you",
+        "version": "0.0.1"
     },
     "version": {
-        "help": "I'll show you the app version",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "apps",
             "res"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll show you the app version",
+        "version": "0.0.1"
     },
     "xplore": {
-        "help": "I'll open your explorer and search whatever you want",
-        "creator": "LoXewyX",
-        "version": "0.0.1",
         "args": [
             "data",
             "res"
-        ]
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll open your explorer and search whatever you want",
+        "version": "0.0.1"
     }
 }

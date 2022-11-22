@@ -1,10 +1,10 @@
 {
     "appname": "yvora",
+    "dirpath": "/",
     "hostname": "",
-    "user": "user",
-    "version": "0.0.4 - [BETA]",
     "password": false,
     "pc": "yvora",
-    "dirpath": "/",
-    "rootpath": "/root"
+    "rootpath": "/root",
+    "user": "user",
+    "version": "0.0.4 - [BETA]"
 }

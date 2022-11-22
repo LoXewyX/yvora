@@ -7,7 +7,7 @@ import socket
 
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as msg
-from utils.Fancyprint import graffiti as graffiti
+from utils.Fancyprint import graffiti
 import utils.Fancyprint
 
 global restart, root
@@ -36,7 +36,7 @@ class Interface():
             data.update({'hostname': socket.gethostname()})
             
             with open(os.path.join(filepath, srcfolder, 'metadata.json'), 'w') as f:
-                json.dump(data, f, indent=4)
+                json.dump(data, f, indent=4, sort_keys=True)
             
             # unbinds
             try:
@@ -130,7 +130,7 @@ class Interface():
                                                     data = json.load(f)
                                                 data['password'] = False if newpwd == '' else hashlib.sha512(newpwd.encode()).hexdigest()
                                                 with open(os.path.join(filepath, srcfolder, 'metadata.json'), 'w') as f:
-                                                    json.dump(data, f, indent=4)
+                                                    json.dump(data, f, indent=4, sort_keys=True)
                                                 exitHK = True
                                     else:
                                         if not exitHK:

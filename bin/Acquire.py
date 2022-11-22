@@ -52,11 +52,10 @@ class Acquire():
                 with open('%s.py' % os.path.join(path, binfolder, res[1].capitalize()), 'w') as f:
                     f.write(url.read().decode('utf-8').replace('\n', ''))
             
-            w = apps
-            w.update({res[1]: remoteApps[res[1]]})
+            apps.update({res[1]: remoteApps[res[1]]})
             
             with open(os.path.join(path, srcfolder, 'apps.json'), 'w') as f:
-                json.dump(w, f, indent=4)
+                json.dump(apps, f, indent=4, sort_keys=True)
         
         global remoteApps, exitHK
         exitHK = False

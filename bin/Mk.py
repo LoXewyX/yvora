@@ -2,41 +2,24 @@ import os, json
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
+from utils.RelpathSolver import get_userpath
 
 class Mk():
-    def __init__(self, data, res, srcfolder, dirpath):
+    def __init__(self, data, res, dirpath, root):
         
         utils.Fancyprint.data = data
-        
-        route = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)
-            ), '..', srcfolder, "metadata.json")
-        
-        with open(route) as f:
-            data = json.load(f)
             
-        def mk(name, txt='', b=''):
-            osfolders = name[1:] if name.startswith('/') or name.startswith('\\') else name
+        def mk(name, txt=''):
             
-            if name.startswith('/') or name.startswith('\\'):
-                relpath = os.path.abspath(os.path.join(dirpath, osfolders))
-            else:
-                relpath = os.path.abspath(os.path.join(dirpath, data['dirpath'][1:], osfolders))
-            
-            if relpath.startswith(dirpath):
-                try:
-                    with open(relpath, 'wb' if b else 'w') as f:
-                        f.write(txt.encode('UTF-8') if b else txt)
-                    
-                except:
-                    print(f'{col.WARNING}Not valid{col.ENDC}')
+            userpath = get_userpath(dirpath, data, root)
+            relpath = os.path.abspath(os.path.join(userpath, data['rootpath' if root else 'dirpath'][1:], name))
+            if relpath.startswith(userpath):
+                with open(relpath, 'w') as f:
+                    f.write(txt)
+                            
             else:
                 pc()
                 print(f'{col.WARNING}Not accessible{col.ENDC}')
-                
-        def error(types):
-            print(f'{col.WARNING}Invalid arguments!{col.ENDC} Valids:')
-            print(json.dumps(types, indent = 4))
         
         if len(res) == 1:
             global exitHK
@@ -60,7 +43,7 @@ class Mk():
             
             if not exitHK:
                 mk(f, c)
-            
+        
         elif len(res) == 2:
             mk(res[1])
             
@@ -68,33 +51,5 @@ class Mk():
             mk(res[1], res[2])
             
         else:
-            types = {
-                '-b': '--bin'
-            }
-            
-            #supervsion
-            
-            i = 3
-            nxt = False
-            skip = False
-            
-            b = False
-            
-            try:
-                for x in res[i:]:
-                    if not nxt:
-                        if x == list(types.keys())[0] or x == types[list(types.keys())[0]]:
-                            b = True
-                            
-                        else:
-                            error(types)
-                            skip = True
-                            break
-                        
-                    else: nxt = False
-                    i += 1
-                
-                if not skip:
-                    mk(res[1], res[2], b)
-            except:
-                error(types)
+            pc()
+            print(f'{col.WARNING}mk must contain 1 or none arguments{col.ENDC}')

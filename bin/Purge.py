@@ -59,7 +59,7 @@ class Purge():
                     d_temp = apps
                     del d_temp[res[1]]
                     with open(appspath, 'w') as f: 
-                        json.dump(d_temp, f, indent=4)
+                        json.dump(d_temp, f, indent=4, sort_keys=True)
                     pc()
                     print('apps.json was updated')
                 except:

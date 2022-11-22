@@ -1,13 +1,13 @@
 import os, json
 
-def get_route(dirpath, srcfolder):
-    return os.path.join(dirpath, '..', srcfolder, "metadata.json")
+def get_route(dirpath, srcfolder, route):
+    return os.path.join(dirpath, '..', srcfolder, route)
 
 def get_userpath(dirpath, data, root):
     return dirpath if root else os.path.join(dirpath, data['user'])
 
 def get_relpath(res, dirpath, srcfolder, root):
-    route = get_route(dirpath, srcfolder)
+    route = get_route(dirpath, srcfolder, 'metadata.json')
     
     with open(route) as f:
         data = json.load(f)

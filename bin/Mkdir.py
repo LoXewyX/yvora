@@ -1,8 +1,8 @@
-import os, json
+import os
 from utils.Colors import TerminalColors as col
 from utils.Fancyprint import Fancyprint as pc
 import utils.Fancyprint
-from utils.RelpathSolver import get_route, get_userpath
+from utils.RelpathSolver import get_userpath
 
 class Mkdir():
     def __init__(self, data, res, dirpath, root):
