@@ -17,7 +17,7 @@ It's stucture it's quite simple:
 file_folder: root\
 :file_folder: src\
 :file_folder: utils\
-:heavy_dollar_sign: \_\_loader\_\_.py\
+:heavy_dollar_sign: __setup__.py\
 :memo: interface.py
 
 ### Adding new content
