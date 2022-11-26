@@ -14,24 +14,30 @@ class New():
             route = get_route(dirpath, srcfolder, 'apps.json')
             with open(route) as f:
                 appdata = json.load(f)
+                
+            empty_args = len(arguments) == 1 and arguments[0] == ''
             
             appdata.update({proj.lower(): {
                 'help': guide,
                 'creator': creator,
                 'version': version,
-                'args': arguments
+                'args': [] if empty_args else arguments
             }})
             
             with open(route, 'w') as f:
                 json.dump(appdata, f, indent=4, sort_keys=True)
             
-            arguments.insert(0, 'self')
+            if empty_args:
+                arguments = 'self'
+            else:
+                arguments.insert(0, 'self')
+                arguments = ', '.join(arguments)
             
-            binpath = os.path.join(dirpath, '..', binfolder, f'{proj.capitalize()}.py')
+            binpath = os.path.join(dirpath, '..', binfolder, '{}.py'.format(proj.capitalize()))
             with open(binpath, 'w') as f:
                 f.write (
-                f'class {proj.capitalize()}():\n' +
-                '\tdef __init__(%s):\n' % ', '.join(arguments) +
+                'class {}():\n'.format(proj.capitalize()) +
+                f'\tdef __init__({arguments}):\n' +
                 f'\t\tprint(\'{proj} works!\') # your code goes here'
                 )
             
@@ -49,24 +55,29 @@ class New():
                 try:
                     keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
+                    print(f'\n{col.RED}escaped{col.ENDC}')
                 except Exception: pass
-                
             keyboard.add_hotkey('ctrl+x', lambda: quitKH())
-            pc()
-            proj = input('Type your project\'s name: ')
             
-            if not exitHK:
+            proj = ''
+            while proj == '':
                 pc()
-                creator = input('creator: ')
+                proj = input(f'Type your project\'s name{col.RED}*{col.ENDC}: ')
+            
+            creator = ''
+            while not exitHK and creator == '':
+                pc()
+                creator = input(f'creator{col.RED}*{col.ENDC}: ')
             
             if not exitHK:
                 pc()
                 guide = input('brief guide (help): ')
-                
-            if not exitHK:
+            
+            version = ''
+            while not exitHK and version == '':
                 pc()
-                version = input('version [N.N.N]: ')
-                
+                version = input(f'version [N.N.N]{col.RED}*{col.ENDC}: ')
+            
             if not exitHK:
                 pc()
                 arguments = [x.strip() for x in input('arguments [separated by comma]: ').split(',')]

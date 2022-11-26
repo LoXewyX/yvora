@@ -10,12 +10,12 @@ class Cd():
         utils.Fancyprint.data = data
         
         if len(res) == 2:
-             
+            
             relpath = get_relpath(res, dirpath, srcfolder, root)
             userpath = get_userpath(dirpath, data, root)
             route = get_route(dirpath, srcfolder, 'metadata.json')
             
-            if os.path.exists(relpath) and relpath.startswith(userpath):
+            if os.path.exists(relpath) and relpath.startswith(userpath) and os.path.isdir(relpath):
                 try:
                     
                     if relpath == userpath: data['rootpath' if root else 'dirpath'] = '/'

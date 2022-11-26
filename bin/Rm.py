@@ -50,18 +50,15 @@ class Rm():
                     keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
                 except Exception: pass
-                
             keyboard.add_hotkey('ctrl+x', lambda: quitKH())
             
             pc()
             d = input('Type your directory / file you want to remove: ')
             
-            if not exitHK:
-                rm(d)
+            if not exitHK: rm(d)
             
-        elif len(res) == 2:
-            rm(res[1])
-            
+        elif len(res) == 2: rm(res[1])
+        
         else:
             types = {
                 '-r': '--recursive',
@@ -75,15 +72,14 @@ class Rm():
                 for x in res[2:]:
                     if x == list(types.keys())[0] or x == types[list(types.keys())[0]]:
                         rec = True
-                        
+                    
                     else:
                         print('x')
                         error(types)
                         ignore = True
                         break
                 
-                if not ignore:
-                    rm(res[1], rec)
+                if not ignore: rm(res[1], rec)
             except Exception as e:
                 print(e)
                 error(types)

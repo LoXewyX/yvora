@@ -24,8 +24,8 @@ class Xplore():
                 try:
                     keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
+                    print(f'\n{col.RED}escaped{col.ENDC}')
                 except Exception: pass
-                
             keyboard.add_hotkey('ctrl+x', lambda: quitKH())
             
             pc()

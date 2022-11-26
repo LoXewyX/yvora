@@ -32,9 +32,10 @@ class Mk():
                 try:
                     keyboard.unregister_hotkey('ctrl+x')
                     keyboard.press('enter')
+                    print(f'\n{col.RED}escaped{col.ENDC}')
                 except Exception: pass
-                
             keyboard.add_hotkey('ctrl+x', lambda: quitKH())
+            
             pc()
             f = input('Type your file\'s name: ')
             if not exitHK:

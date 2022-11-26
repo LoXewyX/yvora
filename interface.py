@@ -13,6 +13,8 @@ import utils.Fancyprint
 global restart, root
 restart = False
 root = False
+MAXATTEMPTS = 5
+attempts    = MAXATTEMPTS
 
 class Interface():
     def __init__(self):
@@ -42,18 +44,8 @@ class Interface():
             try:
                 keyboard.unregister_hotkey('ctrl+x')
             except Exception: pass
-            
-            # load modules
-            
 
         def response(res_r):
-            
-            # Not indexed:
-            # exit
-            # passwd
-            # reload
-            # su
-            
             for res_idx in range(len(res_r)):
                 res = res_r[res_idx].split()
             
@@ -64,7 +56,7 @@ class Interface():
                     if res[0] == 'exit':
                         if not root:
                             msg()
-                            print(f'{col.CYAN}Goodbye{col.ENDC} 👋')
+                            print(f'{col.CYAN}Goodbye{col.ENDC}!')
                             cliexit = True
                         else: root = False
                         
@@ -91,16 +83,15 @@ class Interface():
                                         try:
                                             keyboard.unregister_hotkey('ctrl+x')
                                             keyboard.press('enter')
+                                            print(f'\n{col.RED}escaped{col.ENDC}')
                                         except Exception: pass
                                     keyboard.add_hotkey('ctrl+x', lambda: quitKH())
                                     
                                     def pwd():
                                         global data
                                         if data['password'] == False: return True
-                                        msg()
-                                        msgpw = 'Secret password [%i / %i attempts]: ' % (
-                                            attempts, MAXATTEMPTS
-                                        )
+                                        msg(1)
+                                        msgpw = '└┤ Secret password [%i / %i attempts]: ' % (attempts, MAXATTEMPTS)
                                         i = getpass.getpass(msgpw)
                                         return hashlib.sha512(i.encode()).hexdigest() == data['password']
                                     
@@ -114,17 +105,17 @@ class Interface():
                                             exitHK = True
                                         elif res[0] == 'passwd':
                                             if not exitHK:
-                                                msg()
-                                                newpwd = getpass.getpass('Type me a new password: ')
+                                                msg(1)
+                                                newpwd = getpass.getpass('└┤ Type me a new password: ')
                                             if not exitHK:
-                                                msg()
-                                                newpwdconf = getpass.getpass('Confirm it please: ')
+                                                msg(1)
+                                                newpwdconf = getpass.getpass('└┤ Confirm it please: ')
                                             while not exitHK and newpwd != newpwdconf:
-                                                msg()
-                                                newpwd = getpass.getpass('Retype it please: ')
+                                                msg(1)
+                                                newpwd = getpass.getpass('└┤ Retype it please: ')
                                                 if not exitHK:
-                                                    msg()
-                                                    newpwdconf = getpass.getpass('Confirm it please: ')
+                                                    msg(1)
+                                                    newpwdconf = getpass.getpass('└┤ Confirm it please: ')
                                             if not exitHK and newpwd == newpwdconf:
                                                 with open(os.path.join(filepath, srcfolder, 'metadata.json')) as f:
                                                     data = json.load(f)
@@ -132,14 +123,13 @@ class Interface():
                                                 with open(os.path.join(filepath, srcfolder, 'metadata.json'), 'w') as f:
                                                     json.dump(data, f, indent=4, sort_keys=True)
                                                 exitHK = True
-                                    else:
-                                        if not exitHK:
+                                    elif not exitHK:
                                             attempts -= 1
                                             msg()
                                             print(f'{col.WARNING}This password is not valid for me {col.ENDC}')
                             else:
                                 msg()
-                                print('I think you are acting very suspicious, so  I\'m afraid you can no longer enter the password')
+                                print('I think you are acting very suspicious, so I\'m afraid you can no longer enter the password')
                                 exitHK = True
                     # Extra args
                     elif res[0] in apps:  
@@ -171,8 +161,6 @@ class Interface():
         global attempts, root, data, cliexit, srcfolder, apps, dirpath
         
         cliexit     = False
-        MAXATTEMPTS = 5
-        attempts    = MAXATTEMPTS
         binfolder   = 'bin'
         srcfolder   = 'src'
         

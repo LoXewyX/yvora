@@ -49,6 +49,7 @@ class Purge():
                 keyboard.unregister_hotkey('ctrl+x')
                 keyboard.press('enter')
             except Exception: pass
+        keyboard.add_hotkey('ctrl+x', lambda: quitKH())
         
         def erase():
             global force
@@ -87,8 +88,6 @@ class Purge():
         exitHK = False
         noAsk = False
         
-        keyboard.add_hotkey('ctrl+x', lambda: quitKH())
-        
         if len(res) >= 3:
             types = {
                 '-f': '--force',
@@ -118,6 +117,5 @@ class Purge():
             pc()
             res.append(input('Introduce your package you wish to purge: '))
             if not exitHK:
-                pc()
                 erase() if ask() else desist()
             

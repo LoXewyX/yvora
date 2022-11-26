@@ -40,6 +40,17 @@
         "help": "I'll tell you who created this",
         "version": "0.0.1"
     },
+    "cypher": {
+        "args": [
+            "data",
+            "res",
+            "dirpath",
+            "root"
+        ],
+        "creator": "LoXewyX",
+        "help": "I'll encrypt your files",
+        "version": "0.0.1"
+    },
     "hello": {
         "args": [
             "data"

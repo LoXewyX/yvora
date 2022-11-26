@@ -8,18 +8,21 @@ class Ls():
         
         utils.Fancyprint.data = data
             
-        def pdirs(dirs):
-            if len(dirs) > 1:
-                for x in dirs[:-1]:
-                    print('├─', x)
-            if len(dirs) != 0:
-                print('└─', dirs[-1])
-            else: print('└─', f'{col.WARNING}Empty dir{col.ENDC}')
+        def pdirs(relpath):
+            dirs = os.listdir(relpath)
+            try:
+                if len(dirs) > 1:
+                    for x in dirs[:-1]:
+                        print('├─', f'{col.CYAN}{x}{col.ENDC}' if os.path.isdir(os.path.join(relpath, x)) else x)
+                if len(dirs) != 0:
+                    print('└─', dirs[-1])
+                else: print('└─', f'{col.WARNING}Empty dir{col.ENDC}')
+            except: print(f'{col.WARNING}Not valid{col.ENDC}')
         
         if len(res) == 1:
             pc(4)
             relpath = os.path.join(dirpath, '' if root else data['user'], data['rootpath' if root else 'dirpath'][1:])
-            pdirs(os.listdir(relpath))
+            pdirs(relpath)
             
         elif len(res) == 2:
             pc(4)
@@ -47,4 +50,4 @@ class Ls():
             
         else:
             pc()
-            print(f'{col.WARNING}ls must contain 1 argument{col.ENDC}')
+            print(f'{col.WARNING}ls must contain between 1 - 2 arguments{col.ENDC}')
