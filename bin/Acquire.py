@@ -51,7 +51,7 @@ class Acquire():
         def write():
             with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/acquire/%s.py' % res[1].capitalize()) as url:
                 with open('%s.py' % os.path.join(path, binfolder, res[1].capitalize()), 'w') as f:
-                    f.write(url.read().decode('utf-8').rstrip())
+                    f.write(url.read().decode('utf-8').replace('\n', ''))
             
             apps.update({res[1]: remoteApps[res[1]]})
             
