@@ -15,7 +15,7 @@ class Ls():
                     for x in dirs[:-1]:
                         print('├─', f'{col.CYAN}{x}{col.ENDC}' if os.path.isdir(os.path.join(relpath, x)) else x)
                 if len(dirs) != 0:
-                    print('└─', '{0}{1}{2}'.format(col.CYAN, dirs[-1], col.ENDC) if os.path.isdir(os.path.join(relpath, x)) else dirs[-1])
+                    print('└─', '{0}{1}{2}'.format(col.CYAN, dirs[-1], col.ENDC) if os.path.isdir(os.path.join(relpath, dirs[-1])) else dirs[-1])
                 else: print('└─', f'{col.WARNING}Empty dir{col.ENDC}')
             except: print(f'{col.WARNING}Not valid{col.ENDC}')
         
