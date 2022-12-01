@@ -7,7 +7,7 @@ class Ls():
     def __init__(self, data, res, dirpath, root):
         
         utils.Fancyprint.data = data
-            
+        
         def pdirs(relpath):
             dirs = os.listdir(relpath)
             try:
@@ -15,7 +15,7 @@ class Ls():
                     for x in dirs[:-1]:
                         print('├─', f'{col.CYAN}{x}{col.ENDC}' if os.path.isdir(os.path.join(relpath, x)) else x)
                 if len(dirs) != 0:
-                    print('└─', dirs[-1])
+                    print('└─', '{0}{1}{2}'.format(col.CYAN, dirs[-1], col.ENDC) if os.path.isdir(os.path.join(relpath, x)) else dirs[-1])
                 else: print('└─', f'{col.WARNING}Empty dir{col.ENDC}')
             except: print(f'{col.WARNING}Not valid{col.ENDC}')
         
@@ -35,15 +35,8 @@ class Ls():
                 )
             else:
                 relpath = os.path.abspath(os.path.join(userpath, data['rootpath' if root else 'dirpath'][1:], osfolders))
-            
             if os.path.exists(relpath) and relpath.startswith(userpath):
-                try:
-                    dirs = os.listdir(relpath)
-                    pdirs(dirs)
-                    
-                except:
-                    pc()
-                    print(f'{col.WARNING}Not accessible{col.ENDC}')
+                pdirs(relpath)
             else:
                 pc(3)
                 print(f'{col.WARNING}Not accessible{col.ENDC}')
