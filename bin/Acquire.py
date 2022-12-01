@@ -32,7 +32,6 @@ class Acquire():
             if res[1] in remoteApps:
                 if f or not res[1] in apps:
                     write()
-                    print('Done!')
                 else:
                     global exitHK
                     if not exitHK:
@@ -50,17 +49,21 @@ class Acquire():
             
         def write():
             with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/acquire/%s.py' % res[1].capitalize()) as url:
-                with open('%s.py' % os.path.join(path, binfolder, res[1].capitalize()), 'w') as f:
+                with open('%s.py' % os.path.join(path, binfolder, res[1].capitalize()), 'w', encoding='utf-8') as f:
                     f.write(url.read().decode('utf-8').replace('\n', ''))
+            pc()
+            print('{}.py was created'.format(res[1].capitalize()))
             
             apps.update({res[1]: remoteApps[res[1]]})
             
             with open(os.path.join(path, srcfolder, 'apps.json'), 'w') as f:
                 json.dump(apps, f, indent=4, sort_keys=True)
+            pc()
+            print('apps.json was updated')
         
         global remoteApps, exitHK
         exitHK = False
-        
+        pc()
         with urllib.request.urlopen('https://raw.githubusercontent.com/LoXewyX/yvora_cloud/main/apps.json') as url:
             remoteApps = json.load(url)
         
