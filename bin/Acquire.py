@@ -92,7 +92,6 @@ class Acquire():
             give() if ask() else desist()
             
         elif len(res) == 1:
-            pc()
             res.append(input('Introduce your package you wish to install: '))
             if not exitHK:
                 pc()
