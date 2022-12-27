@@ -1,29 +1,25 @@
-# subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip', '-q'])
-# print('\'pip\' was upgraded')
-
-import pkg_resources as pkg
-import importlib
-data = pkg.working_set
-
-def printPkgs():
-    print(['%s' % i.key for i in data])
-
-def isPkgInstalled(pkg):
-    for i in data:
-        if i.key == pkg:
-            return True
-    return False
-
-# start
-if not isPkgInstalled('keyboard'):
-    import subprocess, sys
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'keyboard', '-q'])
-    print('\'pynput\' was installed')
-    
 import os
-os.system('cls' if os.name == 'nt' else 'clear')
-    
+import importlib
+import subprocess
+import sys
 import interface as iface
+import pkg_resources as respkg
+
+setpkg = ['%s' % i.key for i in respkg.working_set]
+
+usepkgs = [
+    'keyboard',
+    'cryptography',
+    'pick'
+]
+
+for pkg in usepkgs:
+    if not pkg in setpkg:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', pkg, '-q'])
+        print(f'\'{pkg}\' was installed')
+
+os.system('cls' if os.name == 'nt' else 'clear')
+
 def load():
     iface.Interface()
     
@@ -32,5 +28,6 @@ def load():
         importlib.reload(iface)
         iface.root = rootPrivs
         load()
-        
-load()
+
+if __name__ == '__main__':
+    load()

@@ -7,6 +7,14 @@ With the *and* symbol you can do multiple commands (despite errors)
 > __Note__
 Yvora is a full made terminal built in Python.
 
+>__Warning__
+Before running the code I'll recommend you to use a Virtual Enviroment
+Follow the following this steps:
+- $ python3 -m venv ${your_env_name_directory}
+- $ cd ${your_env_name_directory}
+- $ On Windows: Scripts\Activate.ps1
+- $ On Linux: source bin/activate
+
 ## How to run the code
 Use your system bash and run the file: __setup.py__
 
