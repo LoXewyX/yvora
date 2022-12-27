@@ -8,7 +8,7 @@ With the *and* symbol you can do multiple commands (despite errors)
 Yvora is a full made terminal built in Python.
 
 >__Warning__
-Before running the code I'll recommend you using a Virtual Enviroment
+Before running the code I'll recommend you using a Virtual Enviroment\
 Follow the following this steps:
 - $ python3 -m venv ${your_env_name_directory}
 - $ cd ${your_env_name_directory}
